@@ -1,0 +1,9 @@
+{
+  "name": "LwfEyeDrops",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/KiyonakaNata/lwf-eye-drops",
+  "description": "Eye drops for Momoko, Mining Goblin and Blacksmith Salamander. Washes away the shadows and vertical streaks above their eyes when they blink.",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2305"
+  ]
+}
