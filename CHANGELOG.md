@@ -2,8 +2,8 @@
 
 ## 1.1.0 — 2026-11-10
 
-- Coin Toss: the art shows the two familiars it can give
-- Fake Employee ID: the art shows the three familiars it can give
+- Added: Coin Toss art shows its two candidate familiars
+- Added: Fake Employee ID art shows its three candidate familiars
 
 ## 1.0.0 — 2026-11-09
 
