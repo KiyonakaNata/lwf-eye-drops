@@ -1,6 +1,6 @@
 # LWF Eye Drops
 
-**Lazy Witch's Factory** 瞬きのときに出る影や縦線を洗い流す MOD
+**Lazy Witch's Factory** の見た目の引っかかりを洗い流して、ピントを合わせる MOD
 
 ## モモコ
 
@@ -14,10 +14,18 @@
 
 （画像: familiars.png）
 
+## 契約の絵
+
+- コイントスの絵に、当たる候補の使い魔2体を描く
+- 偽社員証の絵に、当たる候補の使い魔3体を描く
+
+（画像: pacts.png）
+
 ## 設定
 
-- キャラクターごとの切り替えは MOD管理ソフトの Config editor（`kiyonakanata.lwfeyedrops.cfg`）
+- キャラクター・契約ごとの切り替えは MOD管理ソフトの Config editor（`kiyonakanata.lwfeyedrops.cfg`）
 - `Momoko`・`Mining Goblin`・`Blacksmith Salamander` = `false` → そのキャラクターは対象から外れる
+- `Coin Toss`・`Fake Employee ID` = `false` → その契約の絵は対象から外れる
 - 変更はゲームの再起動後に反映
 
 ---

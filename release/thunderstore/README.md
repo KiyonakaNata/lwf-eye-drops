@@ -1,6 +1,6 @@
 # LWF Eye Drops
 
-Wash the shadows and streaks out of every blink in **Lazy Witch's Factory**.
+Wash out the visual snags and bring **Lazy Witch's Factory** into focus.
 
 ## Momoko
 
@@ -15,10 +15,18 @@ Wash the shadows and streaks out of every blink in **Lazy Witch's Factory**.
 
 ![Mining Goblin, Blacksmith Salamander](https://raw.githubusercontent.com/KiyonakaNata/lwf-eye-drops/main/img/familiars.png)
 
+## Pact Art
+
+- Coin Toss art shows the two familiars it can give
+- Fake Employee ID art shows the three familiars it can give
+
+![Pact Art](https://raw.githubusercontent.com/KiyonakaNata/lwf-eye-drops/main/img/pacts.png)
+
 ## Settings
 
-- Pick characters in the mod manager's Config editor (`kiyonakanata.lwfeyedrops.cfg`)
+- Pick characters and pacts in the mod manager's Config editor (`kiyonakanata.lwfeyedrops.cfg`)
 - `Momoko`, `Mining Goblin`, `Blacksmith Salamander` = `false` → that character is left untouched
+- `Coin Toss`, `Fake Employee ID` = `false` → that pact art is left untouched
 - Changes apply after restarting the game
 
 ---

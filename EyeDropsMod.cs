@@ -1,6 +1,8 @@
 // LWF Eye Drops
 //
 // モモコ（事務所・マップ上）のまぶたが下がるとき（瞬き・半目）、まつげの上に出る縦の筋と四角い面を消す BepInEx Mod。
+// 1.1.0 から、契約の絵（コイントス・偽社員証）に当たる候補の使い魔を描く機能も持つ。そちらは PactArt.cs から読む
+// （このファイルは起動処理と、まぶたの処理）。
 //
 // -- 本体の仕様（2026-11-09 に 0.31.2 で確認）---------------------------
 // 瞬きは Spine のアニメ（f/act_idle など）が face_eyeblink ボーンを縦に縮めて行う。
@@ -45,13 +47,15 @@ namespace LwfEyeDrops
     {
         internal const string PluginGuid = "kiyonakanata.lwfeyedrops";
         internal const string PluginName = "LWF Eye Drops";
-        internal const string PluginVersion = "1.0.0";
+        internal const string PluginVersion = "1.1.0";
 
         internal static ManualLogSource Log;
         internal static ConfigEntry<bool> Enabled;
         internal static ConfigEntry<bool> Momoko;
         internal static ConfigEntry<bool> MiningGoblin;
         internal static ConfigEntry<bool> BlacksmithSalamander;
+        internal static ConfigEntry<bool> CoinToss;
+        internal static ConfigEntry<bool> FakeEmployeeId;
         private Harmony _harmony;
 
         // 本体は起動中に例外が出るとゲームごと止める。MOD の失敗は MOD だけで止める
@@ -65,6 +69,9 @@ namespace LwfEyeDrops
                 Momoko = Config.Bind("2. Characters", "Momoko", true, "");
                 MiningGoblin = Config.Bind("2. Characters", "Mining Goblin", true, "");
                 BlacksmithSalamander = Config.Bind("2. Characters", "Blacksmith Salamander", true, "");
+                // 項目名はゲームの英語表記（PactTable）。変更が効くのは次に契約の絵が読まれたとき
+                CoinToss = Config.Bind("3. Pacts", "Coin Toss", true, "");
+                FakeEmployeeId = Config.Bind("3. Pacts", "Fake Employee ID", true, "");
 
                 var post = new HarmonyMethod(typeof(EyeDropsPlugin), "AfterRead");
                 var flags = System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static;
@@ -85,6 +92,24 @@ namespace LwfEyeDrops
                 Log.LogWarning("[boot] " + PluginName + " " + PluginVersion
                     + " disabled (the game version may have changed): " + e);
                 enabled = false;
+            }
+
+            // 契約の絵（コイントス・偽社員証）はまぶたと別の仕組み。片方が本体の変更で外れても、もう片方は動かす
+            if (Enabled == null) return;
+            try
+            {
+                if (_harmony == null) _harmony = new Harmony(PluginGuid);
+                PactArt.Patch(_harmony);
+                Log.LogInfo("[boot] pact art patched");
+#if DEV
+                StartCoroutine(CoinTossIcon.DumpAll());
+                StartCoroutine(FakeIdIcon.DumpAll());
+                StartCoroutine(FakeIdIcon.DumpFigures());
+#endif
+            }
+            catch (Exception e)
+            {
+                Log.LogWarning("[boot] pact art disabled (the game version may have changed): " + e);
             }
         }
 

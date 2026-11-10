@@ -42,6 +42,16 @@ $newest = (Get-ChildItem (Join-Path $root '*.cs') | Sort-Object LastWriteTime -D
 if (-not (Test-Path $dll)) { throw "DLL がありません: $dll" }
 if ((Get-Item $dll).LastWriteTime -lt $newest) { throw "DLL がソースより古い。ビルドに失敗しています" }
 
+# 開発版（build.ps1 -Dev）はゲームの絵を BepInEx/cache に PNG で書き出す。配布物に入れない。
+# 理由: 公式の MOD 方針はゲームの画像の再配布を禁止している。配布版は絵をメモリの中で組み立てるだけ
+# （C# の文字列は DLL の中で UTF-16。奇数の位置から始まることもあるので、2通りにずらして読む）
+$dllBytes = [System.IO.File]::ReadAllBytes($dll)
+$dllText = [System.Text.Encoding]::Unicode.GetString($dllBytes) + "`n" + [System.Text.Encoding]::Unicode.GetString($dllBytes, 1, $dllBytes.Length - 1)
+if (-not $dllText.Contains('[fakeid]')) { throw "DLL の文字列を読めていません（検査が効いていない）" }
+foreach ($mark in @('[dump]', 'coin_toss', 'fake_id')) {
+    if ($dllText.Contains($mark)) { throw "開発版の DLL です（'$mark' を含む）。-Dev 無しでビルドし直してください" }
+}
+
 # ---- 並べる ----
 if (Test-Path $stage) { Remove-Item $stage -Recurse -Force }
 New-Item -ItemType Directory -Path $stage -Force | Out-Null

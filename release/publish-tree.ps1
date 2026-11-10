@@ -2,7 +2,7 @@
 #
 #   powershell -ExecutionPolicy Bypass -File release\publish-tree.ps1 [-Dest D:\Wiki\lwf-eye-drops]
 #
-# 出すもの:  ソース 1 本（EyeDropsMod.cs）・build.ps1、release\ の LICENSE / README.md / README.en.md / CHANGELOG.md・img\（原本 *.raw.mkv は除く）・
+# 出すもの:  ソース（EyeDropsMod.cs・PactArt.cs・CoinTossIcon.cs・FakeIdIcon.cs・SpineFigure.cs）・build.ps1、release\ の LICENSE / README.md / README.en.md / CHANGELOG.md・img\（原本 *.raw.mkv は除く）・
 #            release.ps1・zip-README.txt・publish-tree.ps1・thunderstore\
 # 出さないもの:
 #   - README.md（開発用。設計の記録と手元のパスを含む）
@@ -27,7 +27,7 @@ function CopyTo($src, $rel) {
     Copy-Item $src -Destination $dst -Force
 }
 
-foreach ($f in @('EyeDropsMod.cs','build.ps1')) {
+foreach ($f in @('EyeDropsMod.cs','PactArt.cs','CoinTossIcon.cs','FakeIdIcon.cs','SpineFigure.cs','build.ps1')) {
     CopyTo (Join-Path $mod $f) $f
 }
 

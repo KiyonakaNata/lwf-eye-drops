@@ -13,6 +13,8 @@
 
 param(
     [switch]$NoDeploy,
+    # 開発用: コイントスの絵の全組を BepInEx/cache/coin_toss/ に書き出す版を作る（配布しない）
+    [switch]$Dev,
     # 別の場所に入れている場合はここを書き換えるか -Game で指す
     [string]$Game = "D:\SteamLibrary\steamapps\common\Lazy Witch's Factory"
 )
@@ -29,7 +31,11 @@ $here    = Split-Path -Parent $MyInvocation.MyCommand.Path
 $outDir  = Join-Path $here 'bin'
 $outDll  = Join-Path $outDir 'LwfEyeDrops.dll'
 $sources = @(
-    (Join-Path $here 'EyeDropsMod.cs')   # プラグイン本体（読み込み後にまつげメッシュを割る）
+    (Join-Path $here 'EyeDropsMod.cs'),  # プラグイン本体（読み込み後にまつげメッシュを割る）
+    (Join-Path $here 'PactArt.cs'),      # 契約の絵を描き替える土台（読み込み後の差し替え・合成）
+    (Join-Path $here 'CoinTossIcon.cs'), # コイントスの絵を候補の使い魔2体に描き替える
+    (Join-Path $here 'FakeIdIcon.cs'),   # 偽社員証の絵を候補の使い魔3体に描き替える
+    (Join-Path $here 'SpineFigure.cs')   # 使い魔の Spine（マップ上のちびキャラ）を GL で描く
 )
 
 foreach ($p in @($Csc, $Managed) + $sources) {
@@ -75,7 +81,8 @@ $refNames = @(
     'UnityEngine.TilemapModule.dll',
     'UnityEngine.VideoModule.dll',
     'spine-csharp.dll',
-    'spine-unity.dll'
+    'spine-unity.dll',
+    'Utage.dll'
 )
 $coreRefNames = @('BepInEx.dll', '0Harmony.dll')
 
@@ -98,7 +105,7 @@ $cscArgs = @(
     # 無いと SymbolsNotFoundException で読み込みに失敗する
     '/debug:pdbonly',
     "/out:`"$outDll`""
-) + $refs + ($sources | ForEach-Object { "`"$_`"" })
+) + $(if ($Dev) { @('/define:DEV') } else { @() }) + $refs + ($sources | ForEach-Object { "`"$_`"" })
 
 Write-Host "ビルド中: $outDll"
 $psi = New-Object System.Diagnostics.ProcessStartInfo

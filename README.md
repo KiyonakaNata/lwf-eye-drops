@@ -2,7 +2,7 @@
 
 # LWF Eye Drops
 
-**Lazy Witch's Factory** 瞬きのときに出る影や縦線を洗い流す MOD
+**Lazy Witch's Factory** の見た目の引っかかりを洗い流して、ピントを合わせる MOD
 
 ![LWF Eye Drops](img/icon.png)
 
@@ -23,6 +23,13 @@
 ![採掘ゴブリン・鍛冶師サラマンダー](img/familiars.png)
 
 - 瞬きのときの縦線を消す
+
+### 契約の絵
+
+![契約の絵](img/pacts.png)
+
+- コイントスの絵に、当たる候補の使い魔2体を描く
+- 偽社員証の絵に、当たる候補の使い魔3体を描く
 
 ---
 
@@ -75,6 +82,13 @@ MOD管理ソフトで入れた場合は、管理ソフトの Config editor か�
 | Mining Goblin | 採掘ゴブリン | `true` | 同上 |
 | Blacksmith Salamander | 鍛冶師サラマンダー | `true` | 同上 |
 
+**[3. Pacts]**
+
+| 項目 | 契約 | 既定 | 値 |
+|---|---|---|---|
+| Coin Toss | コイントス | `true` | `false` で対象から外す |
+| Fake Employee ID | 偽社員証 | `true` | 同上 |
+
 ---
 
 ## 動作の条件
@@ -94,7 +108,7 @@ MOD管理ソフトで入れた場合は、管理ソフトの Config editor か�
 |---|---|
 | `[boot] LWF Eye Drops ...` が無い | **読まれていない** — DLL の置き場所を確認 |
 | `[boot]` の行に `disabled` | **止まっている** — ゲームの版が合っていない |
-| `Skipped` か `skipped` の行がある | **そのキャラクターには効いていない** — ゲームの版が合っていない |
+| `Skipped` か `skipped` の行がある | **そのキャラクター・契約には効いていない** — ゲームの版が合っていない |
 
 **不具合の報告**には次の2つを添えること
 

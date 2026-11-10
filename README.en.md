@@ -2,7 +2,7 @@
 
 # LWF Eye Drops
 
-Wash the shadows and streaks out of every blink in **Lazy Witch's Factory**
+Wash out the visual snags and bring **Lazy Witch's Factory** into focus
 
 ![LWF Eye Drops](img/icon.png)
 
@@ -23,6 +23,13 @@ Wash the shadows and streaks out of every blink in **Lazy Witch's Factory**
 ![Mining Goblin, Blacksmith Salamander](img/familiars.png)
 
 - No shadows or vertical streaks above the eyes while blinking
+
+### Pact Art
+
+![Pact Art](img/pacts.png)
+
+- Coin Toss art shows the two familiars it can give
+- Fake Employee ID art shows the three familiars it can give
 
 ---
 
@@ -75,6 +82,13 @@ Changes apply after restarting the game
 | Mining Goblin | `true` | Same |
 | Blacksmith Salamander | `true` | Same |
 
+**[3. Pacts]**
+
+| Entry | Default | Values |
+|---|---|---|
+| Coin Toss | `true` | `false`: leave this pact art untouched |
+| Fake Employee ID | `true` | Same |
+
 ---
 
 ## Requirements
@@ -94,7 +108,7 @@ Check `BepInEx/LogOutput.log` first
 |---|---|
 | No `[boot] LWF Eye Drops ...` line | **Not loaded** — check where the DLL is |
 | `disabled` in the `[boot]` line | **Stopped** — game version mismatch |
-| A `Skipped` or `skipped` line | **Not applied to that character** — game version mismatch |
+| A `Skipped` or `skipped` line | **Not applied to that character or pact** — game version mismatch |
 
 **Bug reports** should include
 

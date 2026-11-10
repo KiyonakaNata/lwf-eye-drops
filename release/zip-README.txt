@@ -1,6 +1,6 @@
 LWF Eye Drops
-Lazy Witch's Factory の瞬きのときに出る影や縦線を洗い流す MOD
-Wash the shadows and streaks out of every blink in Lazy Witch's Factory
+Lazy Witch's Factory の見た目の引っかかりを洗い流して、ピントを合わせる MOD
+Wash out the visual snags and bring Lazy Witch's Factory into focus
 
 ────────────────────────────────
 入れかた
@@ -29,8 +29,10 @@ MOD管理ソフトを使うなら Thunderstore から
 
 モモコ → 瞬き・半眼のときの影や縦線を消す
 採掘ゴブリン・鍛冶師サラマンダー → 瞬きのときの縦線を消す
+コイントス → 絵に、当たる候補の使い魔2体を描く
+偽社員証 → 絵に、当たる候補の使い魔3体を描く
 
-キャラクターごとの切り替えは BepInEx/config/kiyonakanata.lwfeyedrops.cfg
+キャラクター・契約ごとの切り替えは BepInEx/config/kiyonakanata.lwfeyedrops.cfg
 変更はゲームの再起動後に反映
 
 ────────────────────────────────
@@ -74,8 +76,10 @@ Features
 
 Momoko → no shadows or vertical streaks above the eyelashes while blinking or with half-closed eyes
 Mining Goblin, Blacksmith Salamander → no shadows or vertical streaks above the eyes while blinking
+Coin Toss → the art shows the two familiars it can give
+Fake Employee ID → the art shows the three familiars it can give
 
-Pick characters in BepInEx/config/kiyonakanata.lwfeyedrops.cfg
+Pick characters and pacts in BepInEx/config/kiyonakanata.lwfeyedrops.cfg
 Changes apply after restarting the game
 
 Remove
